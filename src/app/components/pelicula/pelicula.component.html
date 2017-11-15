@@ -1,0 +1,65 @@
+<div  *ngIf="pelicula"
+      class="container main-container animated fadeIn fast">
+
+      <h1>{{ pelicula.title }}</h1>
+
+      <div class="row">
+
+          <div class="col-md-5">
+              <img [src]="pelicula | peliculaImagen:true" [alt]="pelicula.origina_title"
+                    class="img-thumbnail img-fluid">
+          </div>
+          <div class="col-md-7">
+              <h3>Sinopsis</h3>
+              <hr>
+              <p *ngIf="!pelicula.overview">
+                  <strong>...</strong>
+              </p>
+              <p class="text-justify">
+                {{pelicula.overview}}
+              </p>
+              <h4>Frase</h4>
+              <p *ngIf="!pelicula.tagline">
+                  <strong>...</strong>
+              </p>
+              <p>
+                  {{pelicula.tagline}}
+              </p>
+              <p>
+                  Popularidad: <span class="badge badge-primary">{{pelicula.popularity}}</span>
+              <br>
+                  Votos: <span class="badge badge-primary">{{ pelicula.vote_average }}/10</span>
+              </p>
+
+              <button [routerLink]="['/'+regresarA, busqueda ]"
+                      class="btn btn-outline-danger"
+                      type="button">
+                      Regresar
+              </button>
+
+          </div>
+      </div>
+
+</div>
+
+
+<!-- <div class="container mt-5">
+  <h3 class="card-title">{{pelicula.title}}</h3>
+
+        <div class="card card-inverse col-md-12 " style="background-color: #333; border-color: #333;">
+          <div class="row">
+            <div class="col-md-4 img-fluid">
+              <img [src]="imagen + pelicula.poster_path" alt="">
+            </div>
+            <div class="card-block col-md-8">
+              <h3 class="card-title">Sinopsis</h3>
+              <hr>
+              <p class="card-text">{{pelicula.overview}}</p>
+              <h5 class="card-title">Frace celebre</h5>
+              <p class="card-text">{{pelicula.tagline}}</p>
+              <a [routerLink]="['/buscar']" class="btn btn-outline-danger">Regresar</a>
+            </div>
+          </div>
+
+        </div>
+</div> -->

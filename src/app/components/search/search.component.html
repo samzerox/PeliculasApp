@@ -1,0 +1,81 @@
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Buscar:</label>
+                <input [(ngModel)]="buscar"
+                        name="buscar"
+                        (keyup)="buscarPelicula()"
+                        type="text"
+                        class="form-control"
+                        placeholder="Buscar Pelicula">
+            </div>
+        </div>
+    </div>
+
+    <p *ngIf="_ps.peliculas.length == 0">
+      No se encontraron resultados
+    </p>
+
+    <div class="row animated fadeIn fast">
+        <div class="card-columns">
+
+            <div class="card" *ngFor="let pelicula of _ps.peliculas">
+                <img class="card-img-top img-fluid" [src]="pelicula | peliculaImagen" [alt]="pelicula.original_title">
+                <div class="card-block">
+                    <h4 class="card-title">{{pelicula.title}}</h4>
+                    <p class="card-text text-justify">{{pelicula.overview | slice:0:250}}...</p>
+                    <button type="button"
+                            [routerLink]="['/pelicula', pelicula.id, 'buscar', buscar]"
+                            class="btn btn-outline-primary btn-block">
+                        Ver mas...
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="container mt-5">
+
+<div class="row">
+
+<div class="col-md-3">
+
+<label for="texto">Buscador de Peliculas</label>
+
+<input [(ngModel)]="texto"
+(keyup)="getPeliculas(texto)"
+type="text" name="texto"
+class="form-control"
+placeholder="Buscar por pelicula...">
+<hr>
+</div>
+
+<div class="col-md-9">
+<div class="row">
+<div class="col-md-3 text-center puntero"
+[routerLink]="['/pelicula',pelicula.id]"
+*ngFor="let pelicula of peliculas">
+<img [src]="imagen + pelicula.poster_path " class="img-fluid img-thumbnail">
+<p>
+{{pelicula.title}}
+</p>
+<hr>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div> -->
